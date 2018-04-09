@@ -1,27 +1,33 @@
 package lt.kaunascoding.web.controller;
 
 import lt.kaunascoding.web.model.Duombaze;
+import lt.kaunascoding.web.model.UserInfo;
 import lt.kaunascoding.web.model.tables.UserRecords;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.util.StringUtils;
 
 @Controller
-public class UserRecordsController {
+public class MainTableController {
 
-    @GetMapping("/userrecords")
+    @GetMapping(value={"", "/", "/maintable"})
     String atsakymas(
             Model model
     ) {
         Duombaze db = new Duombaze();
+        //db.grynujuSkaiciavimas();
+        model.addAttribute("grynieji", UserInfo.getGrynieji());
         model.addAttribute("userRecordForm", new UserRecords());
         model.addAttribute("list", db.getAllUserRecords());
-        return "userrecords";
+        return "maintable";
     }
 
-    @PostMapping("/userrecords")
+    @PostMapping("/maintable")
     public String postAtsakymas(
             @ModelAttribute("userRecordForm") UserRecords userRecords,
             BindingResult result,
@@ -29,10 +35,11 @@ public class UserRecordsController {
     ) {
         Duombaze db = new Duombaze();
         if (!StringUtils.isEmpty(userRecords.getGroup()) && !StringUtils.isEmpty(userRecords.getSubgroup())) {
-            db.insertUserRecord(userRecords.getUser_id(), userRecords.getDate(), userRecords.getGroup(), userRecords.getSubgroup(), userRecords.getComment(), userRecords.getSum(), userRecords.getAccount());
+            db.insertUserRecord(userRecords.getUserId(), userRecords.getDate(), userRecords.getGroup(), userRecords.getSubgroup(), userRecords.getComment(), userRecords.getSum(), userRecords.getAccount());
         }
         model.addAttribute("list", db.getAllUserRecords());
-        return "userrecords";
+        model.addAttribute("userRecordForm", new UserRecords());
+        return "maintable";
     }
 
 }

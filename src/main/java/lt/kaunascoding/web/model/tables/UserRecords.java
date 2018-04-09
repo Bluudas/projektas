@@ -1,66 +1,86 @@
 package lt.kaunascoding.web.model.tables;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Student {
-    private int id;
-    private String name;
-    private String surname;
+public class UserRecords {
+    private int userId;
+    private Date date;
+    private String group;
+    private String subgroup;
+    private String comment;
+    private float sum;
+    private String account;
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int user_id) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public Date getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getGroup() {
+        return group;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getSubgroup() {
+        return subgroup;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setSubgroup(String subgroup) {
+        this.subgroup = subgroup;
     }
 
-    public String getEmail() {
-        return email;
+    public String getComment() {
+        return comment;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    private String phone;
-    private String email;
-
-    public Student() {
+    public float getSum() {
+        return sum;
     }
 
-    public Student(ResultSet eilute) {
+    public void setSum(float sum) {
+        this.sum = sum;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public UserRecords() {
+    }
+
+    public UserRecords(ResultSet eilute) {
         try {
-            id = eilute.getInt("id");
-            name = eilute.getString("name");
-            surname = eilute.getString("surname");
-            phone = eilute.getString("phone");
-            email = eilute.getString("email");
+            userId = eilute.getInt("user_id");
+            date = eilute.getDate("date");
+            group = eilute.getString("group");
+            subgroup = eilute.getString("subgroup");
+            comment = eilute.getString("comment");
+            sum = eilute.getFloat("sum");
+            account = eilute.getString("account");
         } catch (SQLException e) {
             e.printStackTrace();
         }

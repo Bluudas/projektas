@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 @Controller
-public class StudentsController {
+public class UserRecordsController {
 
-    @GetMapping("/students")
+    @GetMapping("/userrecords")
     String atsakymas(
             Model model
     ) {
         Duombaze db = new Duombaze();
-        model.addAttribute("studentForm", new UserRecords());
-        model.addAttribute("list", db.getAllStudents());
-        return "students";
+        model.addAttribute("userRecordForm", new UserRecords());
+        model.addAttribute("list", db.getAllUserRecords());
+        return "userrecords";
     }
 
-    @PostMapping("/students")
+    @PostMapping("/userrecords")
     public String postAtsakymas(
-            @ModelAttribute("studentForm") UserRecords userRecords,
+            @ModelAttribute("userRecordForm") UserRecords userRecords,
             BindingResult result,
-            Model model
-    ) {
+            Model model) {
         Duombaze db = new Duombaze();
-        if (!StringUtils.isEmpty(userRecords.getName()) && !StringUtils.isEmpty(userRecords.getSurname())) {
-            db.insertStudent(userRecords.getName(), userRecords.getSurname(), userRecords.getPhone(), userRecords.getEmail());
+        if (!StringUtils.isEmpty(userRecords.getGroup()) && !StringUtils.isEmpty(userRecords.getSubgroup())) {
+            db.insertUserRecord(userRecords.getUserId(), userRecords.getDate(), userRecords.getGroup(), userRecords.getSubgroup(), userRecords.getComment(), userRecords.getSum(), userRecords.getAccount());
         }
-        model.addAttribute("list", db.getAllStudents());
-        return "students";
+        model.addAttribute("list", db.getAllUserRecords());
+        model.addAttribute("userRecordForm", new UserRecords());
+        return "userrecords";
     }
 
 }
