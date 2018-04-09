@@ -1,0 +1,98 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Irasai</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <form method="POST" action="#" th:action="@{/userrecords}" th:object="${userRecordForm}">
+        <table>
+            <tr>
+                <th><label>Naudotojo ID</label></th>
+                <th><label>Data</label></th>
+                <th><label>Grupe</label></th>
+                <th><label>Pogrupis</label></th>
+                <th><label>Komentaras</label></th>
+                <th><label>Suma</label></th>
+                <th><label>Saskaita</label></th>
+            </tr>
+            <tr>
+                <td><input th:field="*{user_id}"/></td>
+                <td><input th:field="*{date}" type="text"/></td>
+                <td><input th:field="*{group}" type="text"/></td>
+                <td><input th:field="*{subgroup}" type="text"/></td>
+                <td><input th:field="*{comment}" type="text"/></td>
+                <td><input th:field="*{sum}" type="text"/></td>
+                <td><input th:field="*{account}" type="text"/></td>
+                <td><input type="submit" value="Submit"/></td>
+            </tr>
+           <!-- <tr>
+                <td><label>Naudotojo ID</label></td><td><input th:field="*{user_id}"/></td>
+            </tr>
+
+            <tr>
+                <td><label>Data</label></td><td><input th:field="*{date}" type="text"/></td>
+            </tr>
+
+            <tr>
+                <td><label>Grupe</label></td><td><input th:field="*{group}" type="text"/></td>
+            </tr>
+
+            <tr>
+                <td><label>Pogrupis</label></td><td><input th:field="*{subgroup}" type="text"/></td>
+            </tr>
+
+            <tr>
+                <td><label>Komentaras</label></td><td><input th:field="*{comment}" type="text"/></td>
+            </tr>
+
+            <tr>
+                <td><label>Suma</label></td><td><input th:field="*{sum}" type="text"/></td>
+            </tr>
+
+            <tr>
+                <td><label>Saskaita</label></td><td><input th:field="*{account}" type="text"/></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Submit"/></td>
+            </tr>-->
+        </table>
+    </form>
+</div>
+
+<h1>Irasai</h1>
+<h3 th:text="${gautasVardas}">Kintamasis</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <!--<th>Naudotojo ID</th>-->
+        <th>Data</th>
+        <th>Grupe</th>
+        <th>Pogrupis</th>
+        <th>Komentaras</th>
+        <th>Suma</th>
+        <th>Saskaita</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${list}">
+        <!--<td th:text="${row.user_id}"></td>-->
+        <td th:text="${row.date}"></td>
+        <td th:text="${row.group}"></td>
+        <td th:text="${row.subgroup}"></td>
+        <td th:text="${row.comment}"></td>
+        <td th:text="${row.sum}"></td>
+        <td th:text="${row.account}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

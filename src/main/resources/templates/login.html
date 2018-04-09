@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- dazniausiai dedami failai reikalingi dokumentui veikti-->
+    <link th:href="@{/css/stiliai.css}" href="../static/css/stiliai.css" type="text/css" rel="stylesheet">
+</head>
+
+<body style="width: 360px; margin: auto;">
+
+<h2 align="center" style="margin-top: 120">Prisijungimas</h2>
+
+<h1 class="line"></h1>
+
+<div>
+    <table class="logino-remas" style="width:100%">
+        <tr>
+            <th HEIGHT="150">
+                <form method="post" th:action="@{/login}" th:object="${loginForm}">
+                    Vartotojas:<br>
+                    <input style="margin: 10" th:field="*{username}" type="text">
+                    <br>
+                    Slaptažodis:<br>
+                    <input style="margin: 10" th:field="*{password}" type="password">
+                    <br><br>
+                    <input class="mygtukas" type="submit" value="Prisijungti">
+                </form>
+            </th>
+        </tr>
+    </table>
+</div>
+
+<h1 class="line"></h1>
+
+<div class="klaida" th:text="${error}">
+
+</div>
+
+
+</body>
+</html>

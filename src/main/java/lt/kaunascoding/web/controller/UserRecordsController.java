@@ -1,7 +1,7 @@
 package lt.kaunascoding.web.controller;
 
 import lt.kaunascoding.web.model.Duombaze;
-import lt.kaunascoding.web.model.tables.Student;
+import lt.kaunascoding.web.model.tables.UserRecords;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,20 +16,20 @@ public class StudentsController {
             Model model
     ) {
         Duombaze db = new Duombaze();
-        model.addAttribute("studentForm", new Student());
+        model.addAttribute("studentForm", new UserRecords());
         model.addAttribute("list", db.getAllStudents());
         return "students";
     }
 
     @PostMapping("/students")
     public String postAtsakymas(
-            @ModelAttribute("studentForm") Student student,
+            @ModelAttribute("studentForm") UserRecords userRecords,
             BindingResult result,
             Model model
     ) {
         Duombaze db = new Duombaze();
-        if (!StringUtils.isEmpty(student.getName()) && !StringUtils.isEmpty(student.getSurname())) {
-            db.insertStudent(student.getName(), student.getSurname(), student.getPhone(), student.getEmail());
+        if (!StringUtils.isEmpty(userRecords.getName()) && !StringUtils.isEmpty(userRecords.getSurname())) {
+            db.insertStudent(userRecords.getName(), userRecords.getSurname(), userRecords.getPhone(), userRecords.getEmail());
         }
         model.addAttribute("list", db.getAllStudents());
         return "students";
